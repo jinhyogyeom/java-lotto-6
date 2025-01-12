@@ -16,17 +16,29 @@ public class LottoController {
     private final LottoGenerator lottoGenerator;
     private final RateCalculator rateCalculator;
 
-    public LottoController () {
+    public LottoController() {
         winningCalculator = new WinningCalculator();
         lottoGenerator = new LottoGenerator();
         rateCalculator = new RateCalculator();
     }
 
-    public void startDraw() {
+    public void run() {
+        purchaseLotto();
+        setWinningNumber();
+        getWinningStatics();
+    }
+
+    public void purchaseLotto() {
         getQuantity();
         generateLottos();
+    }
+
+    public void setWinningNumber() {
         getWinningNumber();
         getBonusNumber();
+    }
+
+    public void getWinningStatics() {
         printResults();
         printRate();
     }

@@ -1,8 +1,6 @@
 package lotto.view;
 
 import lotto.domain.*;
-import lotto.util.RateCalculator;
-
 import java.util.Map;
 
 public class OutputView {
