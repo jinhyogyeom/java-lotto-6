@@ -9,5 +9,4 @@ public class RandomNumberGenerator {
     public List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
-
 }

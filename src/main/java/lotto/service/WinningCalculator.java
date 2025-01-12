@@ -4,19 +4,19 @@ import lotto.domain.*;
 
 public class WinningCalculator {
 
-    public WinningResult calculateWinningResult(Lottos lottos, WinningLotto winningLotto) {
-        WinningResult winningResult = new WinningResult();
+    public WinningResults calculateWinningResult(Lottos lottos, WinningLotto winningLotto) {
+        WinningResults winningResults = new WinningResults();
 
-        lottos.getLottos().forEach(lotto -> processLotto(winningResult, lotto, winningLotto));
+        lottos.getLottos().forEach(lotto -> processLotto(winningResults, lotto, winningLotto));
 
-        return winningResult;
+        return winningResults;
     }
 
-    private void processLotto(WinningResult winningResult, Lotto lotto, WinningLotto winningLotto) {
+    private void processLotto(WinningResults winningResult, Lotto lotto, WinningLotto winningLotto) {
         int matchCount = countMatchingNumbers(lotto, winningLotto);
         boolean bonusMatched = isBonusNumberMatched(lotto, winningLotto);
 
-        MatchResult matchResult = MatchResult.valueOf(matchCount, bonusMatched);
+        MatchResults matchResult = MatchResults.valueOf(matchCount, bonusMatched);
         if (matchResult != null) {
             winningResult.addMatch(matchResult);
         }

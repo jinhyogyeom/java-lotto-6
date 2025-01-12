@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
+
     private final RandomNumberGenerator randomNumberGenerator;
 
     public LottoGenerator() {

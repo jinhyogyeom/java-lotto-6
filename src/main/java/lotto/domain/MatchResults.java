@@ -1,6 +1,7 @@
 package lotto.domain;
 
-public enum MatchResult {
+public enum MatchResults {
+
     NONE(0, 0, "당첨되지 않음"),
     THREE_MATCH(3, 5000, "3개 일치 (5,000원)"),
     FOUR_MATCH(4, 50000, "4개 일치 (50,000원)"),
@@ -12,14 +13,10 @@ public enum MatchResult {
     private final int prize;
     private final String description;
 
-    MatchResult(int matchCount, int prize, String description) {
+    MatchResults(int matchCount, int prize, String description) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.description = description;
-    }
-
-    public int getMatchCount() {
-        return matchCount;
     }
 
     public int getPrize() {
@@ -30,16 +27,15 @@ public enum MatchResult {
         return description;
     }
 
-    public static MatchResult valueOf(int matchCount, boolean bonusMatched) {
+    public static MatchResults valueOf(int matchCount, boolean bonusMatched) {
         if (matchCount == 5 && bonusMatched) {
             return FIVE_MATCH_WITH_BONUS;
         }
-        for (MatchResult result : values()) {
+        for (MatchResults result : values()) {
             if (result.matchCount == matchCount) {
                 return result;
             }
         }
         return NONE;
     }
-
 }

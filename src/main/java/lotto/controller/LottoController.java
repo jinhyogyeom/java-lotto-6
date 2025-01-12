@@ -23,7 +23,7 @@ public class LottoController {
         generateLottos();
         getWinningNumber();
         getBonusNumber();
-        calculateResults();
+        printResults();
     }
 
     private void getQuantity() {
@@ -46,9 +46,12 @@ public class LottoController {
         winningLotto.appendBonusNumber(InputView.getBonusNumber());
     }
 
-    private void calculateResults() {
-        WinningResult winningResult = winningCalculator.calculateWinningResult(lottos, winningLotto);
-        OutputView.showWinningResults(winningResult.getResults());
+    private void printResults() {
+        WinningResults winningResults = winningCalculator.calculateWinningResult(lottos, winningLotto);
+        OutputView.printWinningResults(winningResults.getResults());
     }
 
+    private void printRate() {
+        Rate rate = new Rate();
+    }
 }

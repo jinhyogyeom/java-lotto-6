@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+
     private final List<Integer> numbers;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
@@ -50,5 +51,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 }
