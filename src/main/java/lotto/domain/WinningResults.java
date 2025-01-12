@@ -19,7 +19,13 @@ public class WinningResults {
 
     public Map<MatchResults, Integer> getResults() {
         return results.entrySet().stream()
-                .filter(entry -> entry.getKey() != MatchResults.NONE) // NONE 제외
+                .filter(entry -> entry.getKey() != MatchResults.NONE)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    public int calculateTotal() {
+        return results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }

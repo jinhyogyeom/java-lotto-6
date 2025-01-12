@@ -3,6 +3,7 @@ package lotto.domain;
 public class Quantity {
 
     private final int quantity;
+    private static final int pricePerQuantity = 1000;
 
     private Quantity(int quantity) {
         this.quantity = quantity;
@@ -17,5 +18,9 @@ public class Quantity {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int getTotalPrice() {
+        return quantity * pricePerQuantity;
     }
 }

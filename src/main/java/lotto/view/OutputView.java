@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.*;
+import lotto.util.RateCalculator;
 
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class OutputView {
         }
     }
 
-    public static void printRates(Rate rate) {
-
+    public static void printRates(double rate) {
+        System.out.println("총 수익률은 " + rate + "입니다.");
     }
 }
