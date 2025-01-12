@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningResult;
 
 public class OutputView {
 
@@ -11,8 +12,7 @@ public class OutputView {
         }
     }
 
-    public static void showWinningList() {
-        System.out.println();
-    }
+    public static void showWinningResults(WinningResult winningResult) {
 
+    }
 }

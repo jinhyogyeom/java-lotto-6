@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Quantity;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.service.LottoGenerator;
 import lotto.service.WinningCalculator;
 import lotto.view.InputView;
@@ -49,7 +46,8 @@ public class LottoController {
     }
 
     private void calculateResults() {
-        winningCalculator.getResult(lottos, winningLotto);
+        WinningResult winningResult = winningCalculator.calculateWinningResult(lottos, winningLotto);
+        OutputView.showWinningResults(winningResult);
     }
 
 }

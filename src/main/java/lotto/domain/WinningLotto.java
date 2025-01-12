@@ -26,4 +26,8 @@ public class WinningLotto {
     public void appendBonusNumber(String bonusNumber) {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
