@@ -1,6 +1,7 @@
 package lotto.domain;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class WinningResult {
     private final Map<MatchResult, Integer> results = new HashMap<>();
@@ -15,19 +16,9 @@ public class WinningResult {
         results.put(matchResult, results.get(matchResult) + 1);
     }
 
-    public int getCount(MatchResult matchResult) {
-        return results.get(matchResult);
-    }
-
-    public void printResults() {
-        for (MatchResult matchResult : MatchResult.values()) {
-            System.out.printf("%s - %d개%n", matchResult.getDescription(), getCount(matchResult));
-        }
-    }
-
-    public int calculateTotalPrize() {
+    public Map<MatchResult, Integer> getResults() {
         return results.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
+                .filter(entry -> entry.getKey() != MatchResult.NONE) // NONE 제외
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }

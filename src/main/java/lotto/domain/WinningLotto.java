@@ -8,8 +8,8 @@ public class WinningLotto {
     private int bonusNumber;
 
     public WinningLotto(Lotto lotto) {
-        validateWinningNumbers(lotto);
         this.lotto = lotto;
+        validateWinningNumbers(lotto);
     }
 
     private void validateWinningNumbers(Lotto lotto) {

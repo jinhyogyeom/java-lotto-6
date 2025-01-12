@@ -23,6 +23,7 @@ public class LottoController {
         generateLottos();
         getWinningNumber();
         getBonusNumber();
+        calculateResults();
     }
 
     private void getQuantity() {
@@ -47,7 +48,7 @@ public class LottoController {
 
     private void calculateResults() {
         WinningResult winningResult = winningCalculator.calculateWinningResult(lottos, winningLotto);
-        OutputView.showWinningResults(winningResult);
+        OutputView.showWinningResults(winningResult.getResults());
     }
 
 }
