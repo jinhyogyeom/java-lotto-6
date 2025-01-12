@@ -1,7 +1,8 @@
-package lotto.util;
+package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

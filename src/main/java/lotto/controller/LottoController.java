@@ -4,8 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Quantity;
 import lotto.domain.WinningLotto;
-import lotto.util.LottoGenerator;
-import lotto.util.WinningCalculator;
+import lotto.service.LottoGenerator;
+import lotto.service.WinningCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

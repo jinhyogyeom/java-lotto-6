@@ -1,9 +1,7 @@
-package lotto.util;
+package lotto.service;
 
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
-
-
 
 public class WinningCalculator {
 
