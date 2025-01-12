@@ -1,76 +1,42 @@
 package lotto.controller;
 
-import lotto.domain.*;
-import lotto.service.LottoGenerator;
-import lotto.util.RateCalculator;
-import lotto.service.WinningCalculator;
+import lotto.domain.WinningResults;
+import lotto.service.LottoService;
+import lotto.service.WinningService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private Quantity quantity;
-    private Lottos lottos;
-    private WinningLotto winningLotto;
-    private WinningResults winningResults;
-    private final WinningCalculator winningCalculator;
-    private final LottoGenerator lottoGenerator;
-    private final RateCalculator rateCalculator;
+
+    private final LottoService lottoService;
+    private final WinningService winningService;
 
     public LottoController() {
-        winningCalculator = new WinningCalculator();
-        lottoGenerator = new LottoGenerator();
-        rateCalculator = new RateCalculator();
+        lottoService = new LottoService();
+        winningService = new WinningService();
     }
 
     public void run() {
         purchaseLotto();
-        setWinningNumber();
-        getWinningStatics();
+        setWinningNumbers();
+        calculateWinningStatistics();
     }
 
-    public void purchaseLotto() {
-        getQuantity();
-        generateLottos();
-    }
-
-    public void setWinningNumber() {
-        getWinningNumber();
-        getBonusNumber();
-    }
-
-    public void getWinningStatics() {
-        printResults();
-        printRate();
-    }
-
-    private void getQuantity() {
+    private void purchaseLotto() {
         int price = Integer.parseInt(InputView.getPrice());
-        this.quantity = Quantity.of(price);
+        lottoService.purchaseLotto(price);
+        OutputView.showPurchaseList(lottoService.getLottos());
     }
 
-    private void generateLottos() {
-        this.lottos = lottoGenerator.generate(quantity.getQuantity());
-        OutputView.showPurchaseList(lottos);
+    private void setWinningNumbers() {
+        String winningNumbers = InputView.getWinningNumber();
+        int bonusNumber = Integer.parseInt(InputView.getBonusNumber());
+        winningService.setWinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private void getWinningNumber() {
-        String winningNumber = InputView.getWinningNumber();
-        Lotto lotto = lottoGenerator.createWinningLotto(winningNumber);
-        winningLotto = new WinningLotto(lotto);
-    }
-
-    private void getBonusNumber() {
-        winningLotto.appendBonusNumber(InputView.getBonusNumber());
-    }
-
-    private void printResults() {
-        winningResults = winningCalculator.calculateWinningResult(lottos, winningLotto);
-        OutputView.printWinningResults(winningResults.getResults());
-    }
-
-    private void printRate() {
-        int totalPrize = winningResults.calculateTotal();
-        double rate = rateCalculator.calculateRate(quantity.getTotalPrice(), totalPrize);
-        OutputView.printRates(rate);
+    private void calculateWinningStatistics() {
+        WinningResults winningResults = winningService.calculateWinningResults(lottoService.getLottos());
+        OutputView.printWinningResults(winningResults.getFilteredResults());
+        OutputView.printRates(winningService.calculateRate(lottoService.getTotalPrice(), winningResults));
     }
 }

@@ -1,5 +1,4 @@
 package lotto.domain;
-
 import java.util.List;
 
 public class WinningLotto {
@@ -18,13 +17,22 @@ public class WinningLotto {
         }
     }
 
+    public MatchResults calculateMatch(Lotto userLotto) {
+        int matchCount = (int) userLotto.getNumbers().stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+        boolean bonusMatched = userLotto.getNumbers().contains(bonusNumber);
+        return MatchResults.valueOf(matchCount, bonusMatched);
+    }
+
+
     public boolean contains(int number) {
         List<Integer> numbers = lotto.getNumbers();
         return numbers.contains(number);
     }
 
-    public void appendBonusNumber(String bonusNumber) {
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+    public void appendBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     public int getBonusNumber() {
